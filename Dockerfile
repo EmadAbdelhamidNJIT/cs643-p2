@@ -1,7 +1,8 @@
 FROM openjdk:8-jdk-alpine
-LABEL Miguel Doctor <migueldoctor@gmail.com>
+WORKDIR /opt
 RUN apk add --no-cache curl tar bash procps
-CMD [""]
+COPY target/cs643-*.jar /demo app.jar
+
 FROM bde2020/spark-java-template:1.5.1-hadoop2.6
 
 ENV SPARK_APPLICATION_MAIN_CLASS edu.njit.cs643.SparkML_EC2
@@ -19,3 +20,5 @@ ADD demo.sh /
 RUN chmod +x /demo.sh
 
 CMD ["/bin/bash", "/demo.sh"]
+
+CMD ["java", "jar", "/demo.jar"]
