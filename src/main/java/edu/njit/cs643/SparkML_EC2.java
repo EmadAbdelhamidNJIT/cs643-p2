@@ -32,7 +32,7 @@ public class SparkML_EC2 {
 		JavaRDD<LabeledPoint> parsedData = loadDataFromFileAndDataPreparation(sc, inputFile);
 		JavaRDD<LabeledPoint> testData = loadDataFromFileAndDataPreparation(sc, inputTestFile); //***
 		LogisticRegressionModel model = sML.modelCreationAndAccuracy(parsedData, testData);
-
+		
 		sc.close();
 	}
 
@@ -62,6 +62,13 @@ public class SparkML_EC2 {
 		MulticlassMetrics metrics = new MulticlassMetrics(predictionAndLabels.rdd());
 		double accuracy = metrics.accuracy();
 		System.out.println("Model Accuracy on Test Data: " + accuracy);
+		System.out.println("Model Accuracy on Test Data: " + accuracy);
+		System.out.println("Confusion Matrix: \n" + metrics.confusionMatrix());
+		System.out.println("weighted False Positive Rate: " + metrics.weightedFalsePositiveRate());
+		System.out.println("weighted False Positive Rate: " + metrics.weightedFalsePositiveRate());
+		System.out.println("weighted Precision: " + metrics.weightedPrecision());
+		System.out.println("weighted True Positive Rate: " + metrics.weightedTruePositiveRate());
+
 		return model;
 	}
 	

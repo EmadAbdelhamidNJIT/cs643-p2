@@ -62,6 +62,12 @@ public class SparkML {
 		MulticlassMetrics metrics = new MulticlassMetrics(predictionAndLabels.rdd());
 		double accuracy = metrics.accuracy();
 		System.out.println("Model Accuracy on Test Data: " + accuracy);
+		System.out.println("Confusion Matrix: \n" + metrics.confusionMatrix());
+		System.out.println("weighted False Positive Rate: " + metrics.weightedFalsePositiveRate());
+		System.out.println("weighted False Positive Rate: " + metrics.weightedFalsePositiveRate());
+		System.out.println("weighted Precision: " + metrics.weightedPrecision());
+		System.out.println("weighted True Positive Rate: " + metrics.weightedTruePositiveRate());
+
 		return model;
 	}
 	
